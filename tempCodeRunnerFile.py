@@ -3,7 +3,6 @@ import pyttsx3
 import pywhatkit
 import wikipedia
 import webbrowser
-import os
 
 
 def takeCommand():
@@ -96,8 +95,7 @@ def searchWikipedia(query):
             speak("Sorry Boss, I couldn't find anything on Wikipedia.") 
 import openai
 
-#openai.api_key = "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"
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = "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"
 
 def searchChatgpt(query):
     if "chatgpt" in query:

@@ -229,13 +229,13 @@ if __name__ == "__main__":
                     im=pyautogui.screenshot()
                     im.save("ss.jpg")
                 
-                elif "click photo" or "click my photo" in query:
-                    pyautogui.press("super")
-                    pyautogui.typewrite("camera")
-                    pyautogui.press("enter")
-                    pyautogui.sleep(2)
-                    speak("smile please")
-                    pyautogui.press("enter")
+                # elif "click photo" or "click my photo" in query:
+                #     pyautogui.press("super")
+                #     pyautogui.typewrite("camera")
+                #     pyautogui.press("enter")
+                #     pyautogui.sleep(2)
+                #     speak("smile please")
+                #     pyautogui.press("enter")
                     
                 
                 elif "hello" in query or "hi" in query:
