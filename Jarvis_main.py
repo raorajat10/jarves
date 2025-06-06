@@ -189,10 +189,54 @@ if __name__ == "__main__":
                 #         timeout=10
                 #     )
                 
+                
+                ############## Focus Mode ##################
+                elif "focus mode" in query or "do not disturb" in query:
+                      try:
+                         user_input = input("Are you sure you want to enable focus mode? -: [1 for YES / 2 for NO] ")
+                         if not user_input.strip():
+                            raise ValueError
+                         a = int(user_input)
+                      except ValueError:
+                          speak("Invalid input. Focus mode not enabled.")
+                          a = 2
+
+                      if a == 1:
+                            speak("Focus Mode is now enabled.")
+                            os.startfile("D:\\jarves\\FocusMode.py")
+    
+                      else:
+                          speak("Focus Mode not enabled.")
+                ############## Focus Mode ##################
+                ############## focus graph ##################
+                elif "show my focus graph" in query or "focus graph" in query:
+                    from Focus_graph import focus_graph
+                    focus_graph()
+                ############## focus graph ##################
+                elif "translate" in query:
+                    from translate import translate_text
+                    query = query.replace("translate", "")
+                    query = query.replace("friday", "")
+                    translate_text(query)
+                
                 #game 
                 elif "play game" in query or "game" in query:
                     from game import game_play
                     game_play()
+                
+                elif "screenshot" in query:
+                    import pyautogui 
+                    im=pyautogui.screenshot()
+                    im.save("ss.jpg")
+                
+                elif "click photo" or "click my photo" in query:
+                    pyautogui.press("super")
+                    pyautogui.typewrite("camera")
+                    pyautogui.press("enter")
+                    pyautogui.sleep(2)
+                    speak("smile please")
+                    pyautogui.press("enter")
+                    
                 
                 elif "hello" in query or "hi" in query:
                     speak("Hello Boss! How are you today?")
