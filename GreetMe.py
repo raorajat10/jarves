@@ -6,7 +6,7 @@ import datetime
 engine = pyttsx3.init("sapi5")
 voices = engine.getProperty("voices")
 engine.setProperty("voice", voices[0].id)
-engine.setProperty("rate", 170)
+engine.setProperty("rate", 190)
 
 def speak(audio):
     engine.say(audio)
@@ -17,10 +17,16 @@ def greetMe():
 
     # Determine the appropriate greeting based on the time of day
     if hour >= 0 and hour < 12:
-        speak("Good morning Boss! How can I assist you today?")
+        speak("Good morning Boss!")
+        from Dailybriefing import dailyBriefing
+        dailyBriefing()
     elif hour >= 12 and hour < 18:
-        speak("Good afternoon Boss! How can I assist you today?")
+        speak("Good afternoon Boss!")
+        from Dailybriefing import dailyBriefing
+        dailyBriefing()
     else:
-        speak("Good evening Boss ! How can I assist you today?")
+        speak("Good evening Boss !")
+        from Dailybriefing import dailyBriefing
+        dailyBriefing()
         
-        speak("I am your personal assistant. I am here to help you with your tasks.")
+        

@@ -86,6 +86,7 @@ if __name__ == "__main__":
         if "friday" in query or "hello friday" in query or "hey friday" in query or "hi friday" in query:
             from GreetMe import greetMe
             greetMe()
+            
 
             while True:
                 query = takeCommand().lower()
