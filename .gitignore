@@ -1,0 +1,11 @@
+# Ignore build and dist artifacts
+build/
+dist/
+*.spec
+*.exe
+*.pyz
+*.pkg
+*.toc
+*.zip
+*.pyc
+__pycache__/
