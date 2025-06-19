@@ -1,4 +1,5 @@
 import random
+import threading
 import pyttsx3
 import speech_recognition
 import requests
@@ -10,6 +11,12 @@ import webbrowser as webBrowser
 from plyer import notification
 from pygame import mixer
 import speedtest as speed
+from commandLogger import log_command
+from reminder import set_reminder
+from suggestions import suggestions
+from updatedtasks import mark_task_completed
+import time 
+
 
 
 # Funny fallback responses
@@ -79,10 +86,20 @@ def alarm(query):
     
 
 # Main loop
-if __name__ == "__main__":
+if __name__ == "__main__": 
+    
+ #== bacground suggestions=#
+ def background_suggestions():
     while True:
-        query = takeCommand().lower()
+         time.sleep(3600)  # Check every hour
+         suggestions()   
+#start background suggestions in a separate thread
+ threading.Thread(target=background_suggestions, daemon=True).start()   
 
+
+ while True:
+        query = takeCommand().lower()
+        log_command(query)  # Log the command
         if "friday" in query or "hello friday" in query or "hey friday" in query or "hi friday" in query:
             from GreetMe import greetMe
             greetMe()
@@ -130,8 +147,8 @@ if __name__ == "__main__":
                          file=open("tasks.txt","a")
                          file.write(f"{i}.{tasks[i]}\n")
                          file.close()
-                         
-                elif "show my schedule" in query:
+
+                elif "show my schedule" in query or "my tasks" in query:
                      file=open("tasks.txt", "r")
                      content = file.read()
                      file.close()
@@ -238,7 +255,43 @@ if __name__ == "__main__":
                 #     speak("smile please")
                 #     pyautogui.press("enter")
                     
+                elif "remind me" in query:
+                    try:
+                        import re
+                        match = re.search(r"remind me to (.+?) in (\d+) (minutes?|hours?)",query)
+                        if match:
+                            message=match.group(1)
+                            delay=int(match.group(2))
+                            if "hour" in match.group(3):
+                                delay_in_minutes = delay * 60
+                            else:
+                                delay_in_minutes = delay
+                            set_reminder(message, delay_in_minutes)
+                        else:
+                            speak("I didn't understand the reminder format.")
+                    except Exception as e:
+                        speak("Sorry, I couldn't set the reminder. Please try again.")           
                 
+                elif "productivity" in query or "productivity score" in query:
+                    from productivity import calculate_productivity
+                    calculate_productivity()
+                
+                elif "any suggestions" in query or "suggest something" in query:
+                       from suggestions import suggestions
+                       suggestions()
+
+                
+                elif "mark" in query and "done" in query:
+                    try:
+                        task_name = query.replace("mark", "").replace("done", "").strip()
+                        success = mark_task_completed(task_name)
+                        if success:
+                            speak(f"Task '{task_name}' marked as done.")
+                        else:
+                            speak(f"I couldn't find the task '{task_name}' in your list.")
+                    except:
+                        speak("Sorry, I couldn't mark the task as done. Please try again.")
+                        
                 elif "hello" in query or "hi" in query:
                     speak("Hello Boss! How are you today?")
                 elif "i am fine" in query or "i am good" in query:
