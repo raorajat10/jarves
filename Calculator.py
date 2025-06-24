@@ -3,15 +3,15 @@ import pyttsx3
 
 
 # Initialize TTS engine
-engine = pyttsx3.init("sapi5")
-voices = engine.getProperty("voices")
-engine.setProperty("voice", voices[0].id)
-engine.setProperty("rate", 190)
+# engine = pyttsx3.init("sapi5")
+# voices = engine.getProperty("voices")
+# engine.setProperty("voice", voices[0].id)
+# engine.setProperty("rate", 190)
 
-def speak(audio):
-    engine.say(audio)
-    engine.runAndWait()
-
+# def speak(audio):
+#     engine.say(audio)
+#     engine.runAndWait()
+from brianTTS import speak
 def wolframAlpha(query):
    api_key="8GLJ44-XVY8G4KXP2"
    requester = wolframalpha.Client(api_key)

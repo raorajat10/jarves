@@ -6,16 +6,16 @@ import datetime
 import requests
 
 # === Text-to-Speech Setup ===
-engine = pyttsx3.init("sapi5")
-voices = engine.getProperty("voices")
-engine.setProperty("voice", voices[0].id)
-engine.setProperty("rate", 190)
+# engine = pyttsx3.init("sapi5")
+# voices = engine.getProperty("voices")
+# engine.setProperty("voice", voices[0].id)
+# engine.setProperty("rate", 190)
 
-def speak(audio):
-    print("JARVIS:", audio)
-    engine.say(audio)
-    engine.runAndWait()
-
+# def speak(audio):
+#     print("JARVIS:", audio)
+#     engine.say(audio)
+#     engine.runAndWait()
+from brianTTS import speak
 # === Speech Recognition ===
 def takeCommand():
     r = speech_recognition.Recognizer()

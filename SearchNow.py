@@ -21,16 +21,16 @@ def takeCommand():
             print("Sorry Boss, I didn't get that. Please repeat.")
             return "None"
     return query    
-query = takeCommand().lower()
-engine = pyttsx3.init("sapi5")
-voices = engine.getProperty("voices")
-engine.setProperty("voice", voices[0].id)
-engine.setProperty("rate", 190)
+# query = takeCommand().lower()
+# engine = pyttsx3.init("sapi5")
+# voices = engine.getProperty("voices")
+# engine.setProperty("voice", voices[0].id)
+# engine.setProperty("rate", 190)
 
-def speak(audio):
-    engine.say(audio)
-    engine.runAndWait()
-    
+# def speak(audio):
+#     engine.say(audio)
+#     engine.runAndWait()
+from brianTTS import speak    
 #Google search      
 def searchGoogle(query):
     if "google" in query:

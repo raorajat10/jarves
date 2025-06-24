@@ -10,15 +10,15 @@ from datetime import timedelta
 import os
 
 # Initialize TTS engine
-engine = pyttsx3.init("sapi5")
-voices = engine.getProperty("voices")
-engine.setProperty("voice", voices[0].id)
-engine.setProperty("rate", 190)
+# engine = pyttsx3.init("sapi5")
+# voices = engine.getProperty("voices")
+# engine.setProperty("voice", voices[0].id)
+# engine.setProperty("rate", 190)
 
-def speak(audio):
-    engine.say(audio)
-    engine.runAndWait()
-
+# def speak(audio):
+#     engine.say(audio)
+#     engine.runAndWait()
+from brianTTS import speak
 # Function to take voice command
 def takeCommand():
     r = speech_recognition.Recognizer()

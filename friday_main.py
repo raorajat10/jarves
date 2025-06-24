@@ -51,23 +51,25 @@ for i in range(3):
 # play_gif()        
         
 # Initialize TTS engine
-engine = pyttsx3.init("sapi5")
-voices = engine.getProperty("voices")
-engine.setProperty("voice", voices[0].id)
-engine.setProperty("rate", 190)
+# engine = pyttsx3.init("sapi5")
+# voices = engine.getProperty("voices")
+# engine.setProperty("voice", voices[0].id)
+# engine.setProperty("rate", 190)
 
-def speak(audio):
-    engine.say(audio)
-    engine.runAndWait()
+# def speak(audio):
+#     engine.say(audio)
+#     engine.runAndWait()
+from brianTTS import speak
 
 # Function to take voice command
 def takeCommand():
     r = speech_recognition.Recognizer()
     with speech_recognition.Microphone() as source:
         print("Listening...")
-        r.pause_threshold = 1
+        r.adjust_for_ambient_noise(source, duration=0.8)  # Adjust to environment noise
+        r.pause_threshold = 1.2
         r.energy_threshold = 500
-        audio = r.listen(source, 0, 4)
+        audio = r.listen(source, timeout=6, phrase_time_limit=8)
 
         try:
             print("Understanding...")

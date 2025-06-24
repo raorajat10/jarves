@@ -3,15 +3,15 @@ import json
 import pyttsx3
 
 
-engine = pyttsx3.init("sapi5")
-voices = engine.getProperty("voices")
-engine.setProperty("voice", voices[0].id)
-engine.setProperty("rate", 190)
+# engine = pyttsx3.init("sapi5")
+# voices = engine.getProperty("voices")
+# engine.setProperty("voice", voices[0].id)
+# engine.setProperty("rate", 190)
 
-def speak(audio):
-    engine.say(audio)
-    engine.runAndWait()
-    
+# def speak(audio):
+#     engine.say(audio)
+#     engine.runAndWait()
+from brianTTS import speak   
 def get_news(): 
     api_dict = {
         "business": "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=9d5651a953cc466faae072cf3591e61e",

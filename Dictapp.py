@@ -4,15 +4,15 @@ import webbrowser
 import pyttsx3
 from time import sleep
 
-engine = pyttsx3.init("sapi5")
-voices = engine.getProperty("voices")
-engine.setProperty("voice", voices[0].id)
-engine.setProperty("rate", 190)
+# engine = pyttsx3.init("sapi5")
+# voices = engine.getProperty("voices")
+# engine.setProperty("voice", voices[0].id)
+# engine.setProperty("rate", 190)
 
-def speak(audio):
-    engine.say(audio)
-    engine.runAndWait()
-
+# def speak(audio):
+#     engine.say(audio)
+#     engine.runAndWait()
+from brianTTS import speak
 dictapp={"commandprompt:" : "cmd",
           "notepad": "notepad",
           "calculator": "calc",
@@ -28,6 +28,29 @@ dictapp={"commandprompt:" : "cmd",
           "vlc": "vlc",
           "spotify": "spotify",
           "steam": "steam",
+            "discord": "discord",
+            "zoom": "zoom",
+            "teams": "teams",
+            "skype": "skype",
+            "telegram": "Telegram",
+            "whatsapp": "WhatsApp",
+            "microsoft teams": "Teams",
+            "microsoft edge": "msedge",
+            "microsoft word": "winword",
+            "microsoft excel": "excel",
+            "microsoft powerpoint": "powerpnt",
+            "microsoft paint": "mspaint",
+            "microsoft notepad": "notepad",
+            "microsoft command prompt": "cmd",
+            "microsoft calculator": "calc",
+            "microsoft outlook": "outlook",
+            "microsoft onenote": "onenote",
+            "microsoft access": "access",
+            "microsoft publisher": "mspub", 
+            "microsoft visio": "visio",
+            "microsoft project": "project",
+            "microsoft sharepoint": "sharepoint",
+            
           }    
 def openWebApp(query):
     speak("Opening the application Boss")
